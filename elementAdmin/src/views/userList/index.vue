@@ -45,10 +45,10 @@
             <!-- 对话框中的内容 -->
             <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="日期" prop="pass">
-                    <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
+                    <el-input type="data" v-model="ruleForm2.pass" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="名字" prop="checkPass">
-                    <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
+                    <el-input type="text" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="地址" prop="age">
                     <el-input v-model.number="ruleForm2.age"></el-input>
@@ -91,17 +91,21 @@
         dialogVisible: false, // 对话框  是否出现
         /**弹框中的表单的方法 */
         ruleForm2: {
-          pass: '',
-          checkPass: '',
-          age: ''
-        },
+          pass: '4',
+          checkPass: '54',
+          age: '9'
+        }
+        /**点击这一项的所有内容 */
+
       }
     },
     methods: {
       handleEdit(index, row) {
-        console.log(index, row);
-        console.log('打印编辑');
+        console.log('----点击这一项的所有内容',row);
         this.dialogVisible = true;
+        this.ruleForm2.pass = row.date;
+        this.ruleForm2.checkPass = row.name;
+        this.ruleForm2.age = row.address;
       },
       handleDelete(index, row) {
         console.log(index, row);
@@ -111,7 +115,7 @@
            console.log('我是弹框中的方法') 
       },
       /**加样式的方法 */
-      tableRowClassName({row, rowIndex}) {
+     tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {
           return 'warning-row';
         } else if (rowIndex === 3) {
