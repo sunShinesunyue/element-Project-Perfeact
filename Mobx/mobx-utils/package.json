@@ -1,0 +1,86 @@
+{
+  "name": "mobx-utils",
+  "version": "5.1.0",
+  "description": "Utility functions and common patterns for MobX",
+  "main": "mobx-utils.umd.js",
+  "module": "mobx-utils.module.js",
+  "jsnext:main": "mobx-utils.module.js",
+  "react-native": "mobx-utils.module.js",
+  "typings": "lib/mobx-utils.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "prettier": "prettier --write --print-width 100 --tab-width 4 --no-semi \"**/*.js\" \"**/*.jsx\" \"**/*.tsx\" \"**/*.ts\"",
+    "build": "tsc -p src && rollup lib/mobx-utils.js -e mobx -g mobx:mobx -o mobx-utils.umd.js -f umd --name mobxUtils && rollup lib/mobx-utils.js -e mobx -o mobx-utils.module.js -f es",
+    "watch": "yarn jest --watch",
+    "test": "yarn jest",
+    "prepublishOnly": "npm run build && npm run build-docs",
+    "coverage": "yarn jest --coverage",
+    "build-docs": "npm run build && documentation readme lib/mobx-utils.js --section API"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobxjs/mobx-utils.git"
+  },
+  "author": "Michel Weststrate",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mobxjs/mobx-utils/issues"
+  },
+  "files": [
+    "lib/",
+    "mobx-utils.umd.js",
+    "mobx-utils.module.js"
+  ],
+  "devDependencies": {
+    "@types/jest": "^22.2.0",
+    "@types/tape": "^4.2.30",
+    "coveralls": "^2.11.4",
+    "documentation": "^4.0.0-beta.18",
+    "faucet": "0.0.1",
+    "jest": "^22.4.2",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.clonedeepwith": "^4.5.0",
+    "lodash.intersection": "^4.4.0",
+    "mobx": "^5.5.0",
+    "prettier": "^1.7.2",
+    "rollup": "^0.50.0",
+    "rxjs": "^5.0.2",
+    "ts-jest": "^22.4.1",
+    "typescript": "^2.9.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "mobx": "^4.3.1 || ^5.0.0"
+  },
+  "keywords": [
+    "mobx",
+    "mobx-utils",
+    "promise",
+    "reactive",
+    "frp",
+    "functional-reactive-programming",
+    "state management"
+  ],
+  "jest": {
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "testRegex": "test/.*\\.(t|j)sx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/",
+      "/coverage/",
+      "/\\./"
+    ],
+    "watchPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  }
+}

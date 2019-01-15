@@ -45,17 +45,13 @@
             <!-- 对话框中的内容 -->
             <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="日期" prop="pass">
-                    <el-input type="data" v-model="ruleForm2.pass" autocomplete="off"></el-input>
+                    <el-input type="date" v-model="ruleForm2.pass" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="名字" prop="checkPass">
                     <el-input type="text" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="地址" prop="age">
                     <el-input v-model.number="ruleForm2.age"></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-                    <el-button @click="resetForm('ruleForm2')">重置</el-button>
                 </el-form-item>
             </el-form>
             
@@ -94,6 +90,9 @@
           pass: '4',
           checkPass: '54',
           age: '9'
+        //   pass: [{trigger:'blur',validate:dateValidate}],
+        //   checkPass: [{trigger:'blur',required:'true'}],
+        //   age: [{trigger:'blur',required:'true'}],
         }
         /**点击这一项的所有内容 */
 
