@@ -32,7 +32,7 @@ const actions = {
     /**更新用户信息 */
     UpdateUserInfo({commit},data) {
         return new Promise((resolve,reject) => {
-            updateUserInfo(data) .then(res => {
+            updateUserInfo(data).then(res => {
                 if(res.data.code ===1) {
                     resolve(res.data.msg);
                 } else {
@@ -44,38 +44,41 @@ const actions = {
         })
     },
     /**删除用户 */
-    Delete({commit},data) {
+    deleteUser({commit},data) {
         return new Promise((resolve,reject) => {
-            deleteUser(data).then(res => {
+            delegteUserInfo(data).then(res => {
                 if(res.data.code === 1) {
                     resolve(res.data.msg);
                 } else {
-                    reject(res.data.msg);
+                    reject(res.data.msg)
                 }
             }).catch(err => {
                 reject(err);
             })
         })
     },
-    /**分配角色 */
-    ModuleRule({commit},data) {
+    /**更新用户信息 */
+    SetNewUserInfo({commit},data) {
         return new Promise((resolve,reject) => {
-            moduleRule(data).then(res => {
-                if(res.data.code === 1) {
-                    resolve(res.data.msg);
-                } else {
-                    reject(res.data.msg);
-                }
-            }).catch(err => {
-                reject(err)
-            }) 
+            if(res.data.code === 1) {
+                resolve(res.data.msg);
+            } else {
+                reject(res.data.msg)
+            }
+        }).catch(err => {
+            reject(err)
         })
+    },
+    modifyRule({commit},data) {
+        return new Promise((resolve,reject) => {
+            if(res.data.code === 1) {
+            resolve(res.data.msg);
+        } else {
+            reject(res.data.msg)
+        }
+    }).catch(err => {
+        reject(err)
+    })
+        
     }
-}
-
-export default {
-    namescaped:true,
-    state,
-    actions,
-    mutations
 }
