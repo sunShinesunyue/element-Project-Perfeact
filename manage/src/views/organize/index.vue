@@ -28,18 +28,17 @@
         </span>
       </el-tree>
     </div>
-    今天去哪里啊    明天 全阿里啊
   </div>
 </template>
 
 <script>
-    export default {
-        data() {
-          return {
-            path:this.$route,
-            data:[],
-            // 参考某轮
-          organize: [{
+export default {
+  data(){
+    return {
+      path: this.$route,
+      data: [],
+      // 参考某轮
+      organize: [{
           id: 1, name: '***事业部', parentid: ''
         },{
           id: 2, name: '***事业部', parentid: ''
@@ -86,36 +85,35 @@
         }]
     }
   },
-        methods: {
-            // 递归
-            formatData(arr) {
-              let newArr = [];
-              arr.forEach((item,index) => {
-                if(!item.parentid) { // 最底层
-                  newArr.push(item)
-                } else {
-                  // 调用
-                }
-              })
-            },
-            // 递归
-            findItem(arr,item) {
-              arr.forEach((value,key) => {
-                if(item.parentid === value.id) {
-                  if(value.children) {
-                    value.children.push(item);
-                  } else {
-                    value.children = [item];
-                  }
-                } else if(value.children) {
-                  this.findItem(value.children,item)
-                }
-              })
-            }
-        },
-        created() {
-          this.formatData(this.formatData())
+  methods: {
+    formatData(arr){
+      let newArr = [];
+      arr.forEach((item, index)=>{
+        if (!item.parentid){
+          newArr.push(item);
+        }else{
+          this.findItem(newArr, item);
         }
+      })
+      console.log('newArr...', newArr);
+      this.data = newArr;
+    },
+    findItem(arr, item){
+      arr.forEach((value, key)=>{
+        if (item.parentid == value.id){
+          if (value.children){
+            value.children.push(item);
+          }else{
+            value.children = [item];
+          }
+        }else if(value.children){
+          this.findItem(value.children, item);
+        }
+      })
+    }
+  },
+  created() {
+    this.formatData(this.organize);
   }
-    
+}
 </script>
