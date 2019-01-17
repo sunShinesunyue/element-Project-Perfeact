@@ -113,16 +113,17 @@ export default {
           this.findItem(value.children, item);
         }
       })
-    }
-  },
-  // 添加元素
+    },
+    // 添加元素
   append(node,data) {
       console.log(node,'--添加元素--',data);
   },
   // 移除节点
   remove(node,data) {
       console.log(node,'--移除节点--',data);
+  }
   },
+  // 调用方法
   created() {
     this.formatData(this.organize);
   }
