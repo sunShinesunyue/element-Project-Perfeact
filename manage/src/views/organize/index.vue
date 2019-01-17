@@ -10,7 +10,7 @@
         default-expand-all=false
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <span>{{ node.name }}</span>
+          <span>{{ node.data.name }}</span>
           <span>
             <el-button
               type="text"
@@ -111,6 +111,14 @@ export default {
         }
       })
     }
+  },
+  // 添加元素
+  append(node,data) {
+      console.log(node,'--添加元素--',data);
+  },
+  // 移除节点
+  remove(node,data) {
+      console.log(node,'--移除节点--',data);
   },
   created() {
     this.formatData(this.organize);
