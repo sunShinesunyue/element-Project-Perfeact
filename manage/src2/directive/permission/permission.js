@@ -1,18 +1,17 @@
-
+/**权限控制 */
 import store from '@/store'
 
 export default{
   inserted(el, binding, vnode) {
     const { value } = binding
     const roles = store.getters && store.getters.roles
-
+    /**如果存在,并且是数组并且大于0 */
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value
 
       const hasPermission = roles.some(role => {
         return permissionRoles.includes(role)
       })
-
       if (!hasPermission) {
         el.parentNode && el.parentNode.removeChild(el)
       }
@@ -21,3 +20,4 @@ export default{
     }
   }
 }
+/**权限，允许的渲染出来，不允的没有权限的不许渲染出来 */

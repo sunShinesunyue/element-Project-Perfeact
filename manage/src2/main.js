@@ -26,6 +26,12 @@ import './permission' // permission control
 import './mock' // simulation data
 // 引入全局过滤器
 import * as filters from './filters' // global filters
+
+// 引入自定义指令---2019.1.17
+import permission from './directive/permission/permission'
+// 注册指令
+Vue.directive('permission',permission);
+
 // 挂载elemnt-ui
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium', // set element-ui default size

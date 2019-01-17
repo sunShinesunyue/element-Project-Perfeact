@@ -12,13 +12,16 @@
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <span>{{ node.data.name }}</span>
           <span>
+            <!-- 添加权限 -->
             <el-button
+              v-permission = "[admin]"
               type="text"
               size="mini"
               @click="() => append(data)">
               Append
             </el-button>
             <el-button
+              v-permission = "[staff]"
               type="text"
               size="mini"
               @click="() => remove(node, data)">
