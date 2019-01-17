@@ -3,9 +3,11 @@
     <h1>当前路径：{{this.$route.path}}</h1>
     <div class="block">
       <p>使用 scoped slot</p>
+      <!-- 加上ref -->
       <el-tree
         :data="data"
         show-checkbox
+        ref="tree"
         node-key="id"
         default-expand-all=false
         :expand-on-click-node="false">
@@ -30,6 +32,19 @@
           </span>
         </span>
       </el-tree>
+      <!-- 添加弹框 -->
+      <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="70%"
+        :before-close="handleClose">
+         <!-- 添加的内容 用到了v-model -->
+        <el-input placeholder="请输入你要添加的职位" v-model="temp"/>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="SureDialog">确 定</el-button>
+        </span>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -39,6 +54,8 @@ export default {
   data(){
     return {
       path: this.$route,
+      dialogVisible:false, // 弹框是否可见
+      // temp,
       data: [],
       // 参考某轮
       organize: [{
@@ -117,10 +134,34 @@ export default {
     // 添加元素
   append(node,data) {
       console.log(node,'--添加元素--',data);
+      // 弹框显示出来
+      this.dialogVisible = true;
+      // 将node ,data 值赋给
+      this.current = {
+        node,
+        data
+      }
   },
   // 移除节点
   remove(node,data) {
       console.log(node,'--移除节点--',data);
+      this.$refs.tree.remove(node)   // 将当前点击的这个节点删除
+  },
+  // 添加职位
+  SureDialog() {
+    // 内容框里面是否写内容了
+    if(this.temp) {
+      // 创建你点击的这一个
+      let newNode = {
+        id:this.organize[this.organize.length-1].id+1,
+        name:this.temp,
+        parentid:this.current.node.id || ''
+      }
+      this.organize.push(newNode)   // 添加进去
+      this.$refs.tree.append(newNode,this.current.node)   // 获取节点添加进去
+      this.dialogVisible = false;   // 关闭弹窗
+      this.temp = '';
+    }
   }
   },
   // 调用方法
