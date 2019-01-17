@@ -16,14 +16,14 @@
           <span>
             <!-- 添加权限 -->
             <el-button
-              v-permission = "[admin]"
+              v-permission = "['admin']"
               type="text"
               size="mini"
               @click="() => append(data)">
               Append
             </el-button>
             <el-button
-              v-permission = "[staff]"
+              v-permission = "['staff']"
               type="text"
               size="mini"
               @click="() => remove(node, data)">
@@ -36,8 +36,7 @@
       <el-dialog
         title="提示"
         :visible.sync="dialogVisible"
-        width="70%"
-        :before-close="handleClose">
+        width="70%">
          <!-- 添加的内容 用到了v-model -->
         <el-input placeholder="请输入你要添加的职位" v-model="temp"/>
         <span slot="footer" class="dialog-footer">
@@ -55,7 +54,6 @@ export default {
     return {
       path: this.$route,
       dialogVisible:false, // 弹框是否可见
-      // temp,
       data: [],
       // 参考某轮
       organize: [{
@@ -102,7 +100,8 @@ export default {
           id: 21, name: '初级前端开发', parentid: 8
         },{
           id: 22, name: '孙月', parentid: 20
-        }]
+        }],
+        temp:''
     }
   },
   methods: {

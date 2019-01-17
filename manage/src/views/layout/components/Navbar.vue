@@ -5,6 +5,7 @@
     <breadcrumb class="breadcrumb-container"/>
 
     <div class="right-menu">
+        <span>{{name}}</span>
       <template v-if="device!=='mobile'">
         <error-log class="errLog-container right-menu-item"/>
 
@@ -23,7 +24,7 @@
         </el-tooltip>
       </template>
       <!-- 添加名字 -->
-      <span>{{name}}</span>
+
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
