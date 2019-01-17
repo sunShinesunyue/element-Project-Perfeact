@@ -13,6 +13,12 @@ const userRouter = {
   },
   children: [
     {
+      path: 'index',
+      component: () => import('@/views/organize/index'),
+      name: 'Index',
+      meta: {title: 'OrganizeList'}
+    },
+    {
       path: 'coding',
       component: () => import('@/views/organize/index'),
       name: 'Coding',
