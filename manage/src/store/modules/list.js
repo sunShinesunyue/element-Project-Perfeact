@@ -42,7 +42,7 @@ const actions = {
       })
     })
   },
-  // 删除用户
+  // 删除用户 
   DeleteUser({commit}, data){
     return new Promise((resolve, reject)=>{
       deleteUser(data).then(res=>{

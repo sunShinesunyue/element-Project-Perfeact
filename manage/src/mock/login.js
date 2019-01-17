@@ -1,5 +1,6 @@
 import { param2Obj } from '@/utils'
 
+// 用户信息  都带有一个token标记
 const userMap = {
   admin: {
     roles: ['admin'],
