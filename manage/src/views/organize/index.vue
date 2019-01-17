@@ -9,7 +9,17 @@
         show-checkbox
         ref="tree"
         node-key="id"
-        default-expand-all=false
+         default-expand-all
+  @node-drag-start="handleDragStart"
+  @node-drag-enter="handleDragEnter"
+  @node-drag-leave="handleDragLeave"
+  @node-drag-over="handleDragOver"
+  @node-drag-end="handleDragEnd"
+  @node-drop="handleDrop"
+  draggable
+  :allow-drop="allowDrop"
+  :allow-drag="allowDrag"
+     
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <span>{{ node.data.name }}</span>
@@ -54,6 +64,7 @@ export default {
     return {
       path: this.$route,
       dialogVisible:false, // 弹框是否可见
+
       data: [],
       // 参考某轮
       organize: [{
