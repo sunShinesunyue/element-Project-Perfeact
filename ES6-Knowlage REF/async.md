@@ -1,0 +1,1 @@
+1.async 函数是Generator 函数的语法糖
