@@ -26,6 +26,9 @@ import './permission' // permission control
 import './mock' // simulation data
 // 引入自定义过滤器
 import * as filters from './filters' // global filters
+// 引入v-charts图表
+// import VCharts from 'v-charts';
+// Vue.use(VCharts); // 挂载
 
 import permission from './directive/permission'
 Vue.directive('permission', permission);
